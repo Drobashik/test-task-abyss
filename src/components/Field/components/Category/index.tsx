@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { colors, getRandomColor } from "../../API";
+import React from "react";
 import { CategoryBox } from "../CategoryBox";
+import { CategoryProps } from "../../Types";
+import { useCategory } from "../../hooks/useCategory";
 import style from './category.module.scss';
-import { Category, CategoryProps } from "../../Types";
 
 export const CategoryContainer: React.FC<CategoryProps> = ({
     value,
@@ -13,40 +13,24 @@ export const CategoryContainer: React.FC<CategoryProps> = ({
     nestingElement = 0,
     isCurrentEditing = false,
 }) => {
-    const [categories, setCategories] = useState<Category[]>([]);
-    const [isEditing, setIsEditing] = useState(isCurrentEditing);
-    const [color, setColor] = useState<string>('white');
-    const [nesting, setNesting] = useState(nestingElement);
-    
-
-    const addCategory = () => {
-        setCategories(prev => {
-            return [...prev, { value: '', id: Date.now() }]
-        })
-    }
-
-    const deleteCategory = (id: number) => {
-        setCurrentCategories!(prev => prev.filter(category => category.id !== id));
-    }
-
-    const saveCategory = (value: string, id: number) => {
-        setCurrentCategories!(prev => prev.map(category => category.id === id ? {...category, value} : category))
-        setIsEditing(false);
-    }
-
-    useEffect(() => {
-        if (!isInnerComponent) return;
-
-        if (nestingElement === colors.length) {
-            setNesting(0);
-        }
-
-        setColor(getRandomColor(nestingElement))
-    }, [])
+    const {
+        categories,
+        isEditing,
+        color,
+        nesting,
+        addCategory,
+        deleteCategory,
+        saveCategory,
+        setIsEditing,
+        setCategories,
+    } = useCategory(isCurrentEditing, nestingElement, setCurrentCategories!, isCurrentEditing);
 
     return (
         <>
-            <div className={style.container} style={{alignItems: categories.length < 2 ? 'center' : 'unset'}}>
+            <div
+                className={style.container}
+                style={{ alignItems: categories.length < 2 ? 'center' : 'unset' }}
+            >
                 <CategoryBox
                     id={id as number}
                     subCategories={currentCategories}

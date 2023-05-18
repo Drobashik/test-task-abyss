@@ -29,10 +29,35 @@
 
     &.tertiary {
         background-color: #ccc;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: .25rem .55rem;
+        color: white;
+        font-size: 1rem;
+
+        &.cross {
+            background-color: tomato;
+            border-radius: 50px;
+            transform: rotate(45deg);
+        }
+
+        &.edit {
+            width: 16px;
+            padding: .35rem .85rem;
+            background-color: #51c4fe;
+        }
+
+        &.check {
+            width: 16px;
+            padding: .35rem .85rem;
+            background-color: #50c03f;
+        }
     }
 
     img {
         width: 16px;
-        color: blue;
+        height: 16px;
     }
 }

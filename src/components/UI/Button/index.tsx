@@ -4,7 +4,7 @@ import style from './button.module.scss';
 
 type ButtonProps = {
     type?: string;
-    classNames?: CSSModuleClasses | string;
+    classNames?: string;
     onClick?: React.MouseEventHandler;
     icon?: string;
 }
@@ -21,7 +21,7 @@ export const Button: React.FC<PropsWithChildren<ButtonProps>> = ({
             className={classnames(
                 style.button,
                 style[type || 'primary'],
-                classNames,
+                style[classNames || ''],
             )}
             onClick={onClick}
         >
