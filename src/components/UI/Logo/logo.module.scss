@@ -1,0 +1,15 @@
+.logo {
+    position: relative;
+    width: fit-content;
+
+    &::after {
+        content: "0";
+        background-color: rgb(245, 245, 78);
+        padding: .5rem .75rem;
+        border-radius: 50%;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        right: -3rem;
+    }
+}
