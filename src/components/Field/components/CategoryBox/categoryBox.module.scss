@@ -1,0 +1,18 @@
+.category {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: .5rem;
+    position: relative;
+
+    .name {
+        width: max-content;
+        background-color: rgb(255, 255, 255);
+        padding: .75rem 1.75rem;
+        border: 2px dashed #ccc;
+        min-width: 150px;
+        word-wrap: break-word;
+        max-width: 160px;
+        text-align: center;
+    }
+}

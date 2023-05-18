@@ -4,7 +4,8 @@ import checkSvg from '../../../../assets/check.svg';
 import { Input } from '../../../UI/Input';
 import { LowerLines, UpperLines } from '../Lines';
 import { CategoryBoxProps, DefaultCategoryProps, EditableCategoryProps } from '../../Types';
-import style from '../Category/category.module.scss';
+import { Button } from '../../../UI/Button';
+import style from './categoryBox.module.scss';
 
 export const DefaultCategory: React.FC<DefaultCategoryProps> = ({
     id,
@@ -20,24 +21,26 @@ export const DefaultCategory: React.FC<DefaultCategoryProps> = ({
             <div className={style.name} style={{ background: color }}>
                 {value}
             </div>
-            <div
-                className={style.plus}
+
+            <Button
+                type='tertiary'
                 onClick={addCategory}
             >
                 +
-            </div>
-            {isInnerComponent && <div
-                className={style.cross}
-                onClick={() => deleteCategory(id as number)}
-            >
-                +
-            </div>}
-            {isInnerComponent && <div
-                className={style.edit}
-                onClick={() => setIsCurrentEditing!(true)}
-            >
-                <img src={penSvg} alt="Pen grey" />
-            </div>}
+            </Button>
+            {isInnerComponent &&
+                <Button
+                    type='tertiary'
+                    classNames='cross'
+                    onClick={() => deleteCategory(id as number)}
+                >+</Button>}
+            {isInnerComponent &&
+                <Button
+                    type='tertiary'
+                    classNames='edit'
+                    icon={penSvg}
+                    onClick={() => setIsCurrentEditing!(true)}
+                />}
         </>
     )
 }
@@ -60,20 +63,21 @@ export const EditableCategory: React.FC<EditableCategoryProps> = ({
                     }}
                 />
             </div>
-            {isInnerComponent && <div
-                className={style.cross}
-                onClick={() => deleteCategory(id as number)}  // TODO: create function cancelEditing
-            >
-                +
-            </div>}
-            {isInnerComponent && <div
-                className={style.check}
-                onClick={() => {
-                    saveCategory(inputValue || 'Sub-category', id)
-                }}
-            >
-                <img src={checkSvg} alt="Pen grey" />
-            </div>}
+            {isInnerComponent &&
+                <Button
+                    type='tertiary'
+                    classNames='cross'
+                    onClick={() => deleteCategory(id as number)}
+                >+</Button>}
+            {isInnerComponent &&
+                <Button
+                    type='tertiary'
+                    classNames='check'
+                    icon={checkSvg}
+                    onClick={() => {
+                        saveCategory(inputValue || 'Sub-category', id)
+                    }}
+                />}
         </>
     );
 }
@@ -100,7 +104,6 @@ export const CategoryBox: React.FC<CategoryBoxProps> = ({
                 categories={subCategories}
                 isInnerComponent={isInnerComponent}
             />
-
 
             {isCurrentEditing ? (
                 <EditableCategory
