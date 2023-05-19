@@ -2,6 +2,7 @@ import React from "react";
 import { CategoryBox } from "../CategoryBox";
 import { CategoryProps } from "../../Types";
 import { useCategory } from "../../hooks/useCategory";
+import { UpperLines } from "../Lines";
 import style from './category.module.scss';
 
 export const CategoryContainer: React.FC<CategoryProps> = ({
@@ -31,9 +32,14 @@ export const CategoryContainer: React.FC<CategoryProps> = ({
                 className={style.container}
                 style={{ alignItems: categories.length < 2 ? 'center' : 'unset' }}
             >
+                <UpperLines
+                    id={id}
+                    categories={currentCategories}
+                    isInnerComponent={isInnerComponent}
+                />
+
                 <CategoryBox
                     id={id as number}
-                    subCategories={currentCategories}
                     categories={categories}
                     isInnerComponent={isInnerComponent}
                     value={value}

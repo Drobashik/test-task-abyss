@@ -2,7 +2,7 @@ import { useState } from 'react';
 import penSvg from '../../../../assets/pen.svg';
 import checkSvg from '../../../../assets/check.svg';
 import { Input } from '../../../UI/Input';
-import { LowerLines, UpperLines } from '../Lines';
+import { LowerLines } from '../Lines';
 import { CategoryBoxProps, DefaultCategoryProps, EditableCategoryProps } from '../../Types';
 import { Button } from '../../../UI/Button';
 import style from './categoryBox.module.scss';
@@ -84,7 +84,6 @@ export const EditableCategory: React.FC<EditableCategoryProps> = ({
 
 export const CategoryBox: React.FC<CategoryBoxProps> = ({
     id,
-    subCategories,
     categories,
     isInnerComponent,
     value,
@@ -99,12 +98,6 @@ export const CategoryBox: React.FC<CategoryBoxProps> = ({
 
     return (
         <div className={style.category}>
-            <UpperLines
-                id={id}
-                categories={subCategories}
-                isInnerComponent={isInnerComponent}
-            />
-
             {isCurrentEditing ? (
                 <EditableCategory
                     id={id}

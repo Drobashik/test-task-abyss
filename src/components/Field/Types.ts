@@ -18,7 +18,6 @@ export type Category = {
 
 export type CategoryBoxProps = {
     id: number;
-    subCategories: Category[];
     categories: Category[];
     isInnerComponent: boolean;
     value: string;
